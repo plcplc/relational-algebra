@@ -1,0 +1,78 @@
+cabal-version:      3.4
+name:               relational-algebra
+version:            0.1.0.0
+synopsis: An embedded DSL for relational algebra
+description:
+  An embedded domain-specific language, inspired by the final-tagless
+  approach of https://okmij.org/ftp/meta-programming/quel.pdf, but using
+  primitives from relational algebra rather than iterative looping.
+
+  Includes support for aggregations using profunctors, inspired by the Rel8
+  package.
+
+  This package includes a meta-circular backend (i.e., a trivial implementation
+  in terms of the host-language itself) as well as a SQLite backend.
+
+license:            AGPL-3.0-or-later
+license-file:       LICENSE
+author:             Philip Lykke Carlsen
+maintainer:         plcplc@gmail.com
+build-type:         Simple
+extra-doc-files:    CHANGELOG.md
+
+common warnings
+    ghc-options: -Wall
+
+library
+
+    import:           warnings
+
+    ghc-options: -threaded
+
+    exposed-modules:
+      Relational.Class
+      Relational.MetaCircular
+      Relational.Sqlite
+      Relational.Sqlite.Internal
+
+    default-extensions:
+      BlockArguments,
+      DataKinds,
+      DefaultSignatures,
+      DerivingStrategies,
+      DerivingVia,
+      ExtendedDefaultRules,
+      LambdaCase,
+      OverloadedStrings,
+      PatternSynonyms,
+      RecordWildCards,
+      TemplateHaskell,
+      TypeFamilies,
+      UndecidableSuperClasses,
+      ViewPatterns,
+      QuasiQuotes
+
+    build-depends:    aeson,
+                      base ^>=4.17.0.0,
+                      bytestring,
+                      containers,
+                      data-has,
+                      directory,
+                      generics-sop,
+                      lens,
+                      mtl,
+                      pretty-show,
+                      profunctors,
+                      sqlite-simple,
+                      stm,
+                      template-haskell,
+                      text,
+                      time,
+                      transformers,
+                      uuid,
+                      uuid-types,
+                      unliftio-core
+
+    hs-source-dirs:   src
+
+    default-language: GHC2021
